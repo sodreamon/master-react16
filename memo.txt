@@ -1,3 +1,5 @@
+3:49
+
 ### Fragment
 import React, { Component, Fragment💛 } from "react";
 
@@ -117,5 +119,50 @@ class App extends Component {
         <Portals />💛
       </Fragment>
     );
+  }
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+### setTimeout
+setTimeout(() => {💛
+      this.setState({
+        friends: undefined
+      });
+    }, 2000💛);
+
+
+
+
+
+
+
+
+
+
+
+
+
+### map
+class ErrorMaker extends Component {
+  state = {
+    friends: ["qwe", "asd", "zxc", "rty"]
+  };
+  
+  render() {
+    const { friends } = this.state;
+
+    return friends.map(friend => `${friend} `);💛
   }
 }
