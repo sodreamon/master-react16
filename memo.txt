@@ -1,0 +1,121 @@
+### Fragment
+import React, { Component, Fragment💛 } from "react";
+
+class ReturnTypes extends Component {
+  render() {
+    return(
+      <Fragment>💛
+        <header></header>
+        <div></div>
+        <footer></footer>
+      </Fragment>
+    )
+  }
+}
+
+
+
+
+
+
+
+
+
+### NO Fragment
+[1]
+class ReturnTypes extends Component {
+  render() {
+    return(
+      <span>💛
+        <header></header>
+        <div></div>
+        <footer></footer>
+      </span>
+    )
+  }
+}
+
+[2]
+class ReturnTypes extends Component {
+  render() {
+    return([ 💛     
+        <header key={1}💛></header>
+        <div key={2}></div>
+        <footer key={3}></footer>      
+    ])
+  }
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+### string return
+import React, { Component, Fragment } from "react";
+
+class ReturnTypes extends Component {
+  render() {
+    return "hello";💛
+  }
+}
+
+class App extends Component {
+  render() {
+    return (
+      <Fragment>
+        <ReturnTypes />💛
+      </Fragment>
+    );
+  }
+}
+
+
+
+
+
+
+
+
+
+
+
+
+### portal
+[html]
+<body>
+    <header>
+      <h1>can't touch this</h1>
+      <span id="touchme"></span>💛
+    </header>
+    <div id="root"></div>
+
+
+
+[App.js]
+import { createPortal } from "react-dom";💛
+
+class Portals extends Component {
+  render() {
+    return createPortal(<Message />, document.getElementById("touchme"));💛
+  }
+}
+
+const Message = () => "Just touched it";
+
+class App extends Component {
+  render() {
+    return (
+      <Fragment>
+        <Portals />💛
+      </Fragment>
+    );
+  }
+}
