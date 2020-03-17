@@ -35,13 +35,26 @@ class ReturnTypes extends Component {
   }
 }
 
+const ErrorFallback = () => "sorry something went wrong";
+
 class App extends Component {
+  state = {
+    hasError: false
+  };
+
+  componentDidCatch = (error, info) => {
+    console.log(`catched ${error} the info i have ${JSON.stringify(info)}`);
+    this.setState({ hasError: true });
+  };
+
   render() {
+    const { hasError } = this.state;
+
     return (
       <Fragment>
         <ReturnTypes />
         <Portals />
-        <ErrorMaker />
+        {hasError ? <ErrorFallback /> : <ErrorMaker />}
       </Fragment>
     );
   }
