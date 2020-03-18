@@ -179,7 +179,42 @@ class ErrorMaker extends Component {
 
 
 
-### catch error
+
+
+### ErrorMaker
+class ErrorMaker extends Component {
+  state = {
+    friends: ["qwe", "asd", "zxc", "rty"]
+  };
+
+  componentDidMount = () => {
+    setTimeout(() => {
+      this.setState({
+        friends: undefined💛
+      });
+    }, 2000);
+  };
+
+  render() {
+    const { friends } = this.state;
+
+    return friends.map(friend => `${friend} `);💛
+  }
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+### catch error [개별작업]
 const ErrorFallback = () => "sorry something went wrong";💛
 
 class App extends Component {
@@ -203,3 +238,56 @@ class App extends Component {
     );
   }
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+### catch error [대량작업]
+const ErrorFallback = () => "sorry something went wrong";💛
+
+const BoundaryHOC💛 = ProtactedComponent💛 =>
+  class BoundaryHOC extends Component {
+    state = {
+      hasError: false💛
+    };
+
+    componentDidCatch = (error, info) => {
+      this.setState({ hasError: true })💛;
+    };
+
+    render() {
+      const { hasError } = this.state;
+      if(hasError){
+        return <ErrorFallback />💛
+      }else{
+        return <ProtactedComponent />💛
+      }
+    }
+  };
+
+  class ErrorMaker extends Component {}
+
+  const PErrorMaker = BoundaryHOC(ErrorMaker);💛
+
+  class App extends Component {
+  render() {
+    return (
+      <Fragment>
+        <PErrorMaker />💛
+      </Fragment>
+    );
+  }
+}
+
+export default BoundaryHOC(App);💛
